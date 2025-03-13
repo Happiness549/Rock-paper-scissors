@@ -11,3 +11,14 @@ function getComputerChoice () {
     
     }
 }
+
+function getHumanChoice () {
+    let choice = prompt("enter rock, paper, or scissors").toLowerCase();
+    if (choice === "rock" || choice === "paper" || choice ==="scissors") {
+        return choice;
+    } else {
+        console.log("invalid choice! plaese enter rock, paper or scissors.");
+        return getHumanChoice();
+    }
+
+}
