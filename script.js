@@ -40,3 +40,14 @@ function determineWinner (userChoice, computerChoice) {
         return "Computer wins!";
     }
 }
+
+function playGame () {
+    let userChoice = getHumanChoice();
+    let computerChoice = getComputerChoice () ;
+
+    console.log(`You chose: ${userChoice}`);
+    console.log(`computer chose: ${computerChoice}`);
+
+    console.log(determineWinner(userChoice, computerChoice));
+}
+playGame();
