@@ -1,53 +1,126 @@
-function getComputerChoice () {
-    let randomNumber = 
-    Math.floor(Math.random() *3);
+const score = {
+    wins: 0,
+    losses: 0,
+    ties: 0
+};
 
-    if(randomNumber === 0) {
-        return "rock"; 
-    } else if (randomNumber === 1) {
-        return "paper";
-    } else {
-        return "scissors"
+updateScoreElememnt();
+
+function playGame (playerMove) {
+    const computerChoice = pickComputerChoice ();
     
-    }
+    let result = '';
+
+    if(playerMove ==='scissors') {
+        if(computerChoice === `rock`){
+    result = `You lose.`;
+} else if (computerChoice === `paper`) {
+    result = `You win.`;
+} else if (computerChoice === `scissors`) {
+    result `Tie.`; 
 }
 
-function getHumanChoice () {
-    let choice = prompt("enter rock, paper, or scissors").toLowerCase();
-    if (choice === "rock" || choice === "paper" || choice ==="scissors") {
-        return choice;
-    } else {
-        console.log("invalid choice! plaese enter rock, paper or scissors.");
-        return getHumanChoice();
-    }
+} else if (playerMove === 'paper') {
+    if(computerChoice === 'rock'){
+    result = `You win.`;
+} else if (computerChoice === 'paper') {
+    result = `Tie.`;
+} else if (computerChoice === 'scissors') {
+    result `You lose.`;
+}
 
+} else if (playerMove ==='rock'){
+    if(computerChoice === `rock`){
+    result = `Tie.`;
+} else if (computerChoice === 'paper') {
+    result = `You lose.`;
+} else if (computerChoice === 'scissors') {
+    result `You win.`;
+}
+}
+
+alert(`You picked ${playerMove}.
+    Computer picked ${computerChoice}. 
+    ${result}`);
+   
 }
 
 
-function determineWinner (userChoice, computerChoice) {
-    if (userChoice === computerChoice) {
-        return "It is a tie";
-    } 
+
+     function playGame (playerMove) {
+    const computerChoice = pickComputerChoice ();
     
-    if (
-        (userChoice === "rock" && computerChoice ==="scissors") ||
-    (userChoice === "paper" &&computerChoice === "rock") ||
-    (userChoice ==="scissors" && computerChoice ==="paper")
-) {
-       return "You win";
-       
-    } else {
-        return "Computer wins!";
-    }
+    let result = '';
+
+    if(playerMove ==='scissors') {
+        if(computerChoice === 'rock'){
+    result = 'You lose.';
+} else if (computerChoice === 'paper') {
+} else if (computerChoice === `scissors`) {
+    result = 'Tie.';
 }
 
-function playGame () {
-    let userChoice = getHumanChoice();
-    let computerChoice = getComputerChoice () ;
-
-    console.log(`You chose: ${userChoice}`);
-    console.log(`computer chose: ${computerChoice}`);
-
-    console.log(determineWinner(userChoice, computerChoice));
+} else if (playerMove === 'paper') {
+    if(computerChoice === 'rock'){
+    result = 'You win.';
+} else if (computerChoice === 'paper') {
+    result = 'Tie.'
+} else if (computerChoice === 'scissors') {
+    result = 'You lose.'
 }
-playGame();
+
+} else if (playerMove ==='rock'){
+    if(computerChoice === `rock`){
+    result = 'Tie.';
+} else if (computerChoice === 'paper') {
+    result = 'You lose.';
+} else if (computerChoice === 'scissors') {
+    result = 'You win.';
+}
+}
+
+if (result === 'You win.') {
+    score.wins  += 1;
+
+} else if (result === 'you lose.') {
+    score.losses += 1;
+
+} else if (result === 'Tie.') {
+    score.ties += 1;
+}
+
+localStorage.setItem('score',JSON.stringify(score));
+
+updateScoreElememnt();
+
+document.querySelector(".js-result").innerHTML = result;
+
+document.querySelector(".js-moves").innerHTML = `You ${playerMove} - ${computerChoice} computer`;
+
+};
+
+function updateScoreElememnt () {
+    document.querySelector(".js-score")
+.innerHTML = `Wins: ${score.wins}, losses: 
+${score.losses}, Ties: ${score.ties}`
+
+};
+
+function pickComputerChoice () {
+    const randomNumber = Math.random();
+
+    let computerChoice = '';
+if(randomNumber >= 0 && randomNumber < 1/3){
+     computerChoice = 'rock';
+
+
+    } else if (randomNumber >1/3  && randomNumber <2/3) {
+computerChoice = 'paper';
+
+} else if(randomNumber >= 2/3 && randomNumber <1 ) {
+ computerChoice = 'scissors';
+}
+
+return computerChoice;
+}
+
